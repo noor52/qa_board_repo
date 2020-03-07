@@ -1,4 +1,4 @@
-$( document ).ready(function() {
+$(document).ready(function () {
     // DOM ready
 
     // Test data
@@ -21,12 +21,12 @@ $( document ).ready(function() {
  * A not existing key in localstorage return null
  *
  */
-function getLocalProfile(callback){
-    var profileImgSrc      = localStorage.getItem("PROFILE_IMG_SRC");
-    var profileName        = localStorage.getItem("PROFILE_NAME");
+function getLocalProfile(callback) {
+    var profileImgSrc = localStorage.getItem("PROFILE_IMG_SRC");
+    var profileName = localStorage.getItem("PROFILE_NAME");
     var profileReAuthEmail = localStorage.getItem("PROFILE_REAUTH_EMAIL");
 
-    if(profileName !== null
+    if (profileName !== null
         && profileReAuthEmail !== null
         && profileImgSrc !== null) {
         callback(profileImgSrc, profileName, profileReAuthEmail);
@@ -38,12 +38,14 @@ function getLocalProfile(callback){
  * in localstorage
  */
 function loadProfile() {
-    if(!supportsHTML5Storage()) { return false; }
+    if (!supportsHTML5Storage()) {
+        return false;
+    }
     // we have to provide to the callback the basic
     // information to set the profile
-    getLocalProfile(function(profileImgSrc, profileName, profileReAuthEmail) {
+    getLocalProfile(function (profileImgSrc, profileName, profileReAuthEmail) {
         //changes in the UI
-        $("#profile-img").attr("src",profileImgSrc);
+        $("#profile-img").attr("src", profileImgSrc);
         $("#profile-name").html(profileName);
         $("#reauth-email").html(profileReAuthEmail);
         $("#inputEmail").hide();

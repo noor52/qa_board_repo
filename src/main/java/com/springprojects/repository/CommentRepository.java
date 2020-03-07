@@ -10,8 +10,8 @@ import com.springprojects.entity.Idea;
 import com.springprojects.entity.UserEntity;
 
 @Repository
-public interface CommentRepository extends JpaRepository<Comment, Long>{
-	Comment findByIdeaAndCommentedUser(Idea idea, UserEntity userByUsername);
+public interface CommentRepository extends JpaRepository<Comment, Long> {
+    Comment findByIdeaAndCommentedUser(Idea idea, UserEntity userByUsername);
 
-	List<Comment> findAllByIdea(Idea idea);
+    List<Comment> findAllByIdea(Idea idea);
 }

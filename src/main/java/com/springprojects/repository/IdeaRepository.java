@@ -10,17 +10,18 @@ import org.springframework.stereotype.Repository;
 
 import com.springprojects.entity.Idea;
 import com.springprojects.entity.Tag;
+
 @Repository
-public interface IdeaRepository extends PagingAndSortingRepository<Idea, Long>{
+public interface IdeaRepository extends PagingAndSortingRepository<Idea, Long> {
 
-	Page<Idea> findAllByAuthorEmailOrderByIdeaIdDesc(String email, Pageable pageable);
+    Page<Idea> findAllByAuthorEmailOrderByIdeaIdDesc(String email, Pageable pageable);
 
-	List<Idea> findAllByAuthorEmail(String email);
-	
-	@Query("select i from Idea i")
-	Page<Idea> findAll(Pageable page);
+    List<Idea> findAllByAuthorEmail(String email);
 
-	List<Idea> findAllByTag(Tag tag);
+    @Query("select i from Idea i")
+    Page<Idea> findAll(Pageable page);
 
-	List<Idea> findByTag(Tag tag);
+    List<Idea> findAllByTag(Tag tag);
+
+    List<Idea> findByTag(Tag tag);
 }

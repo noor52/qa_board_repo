@@ -14,10 +14,10 @@ import com.springprojects.entity.Activity;
 import com.springprojects.entity.UserEntity;
 
 @Repository
-public interface ActivityRepository extends JpaRepository<Activity, Long>{
-	@Transactional
-	@Modifying
-	@Query("update Activity a set a.lastActivityDateTime = ?1 where a.id = ?2")
-	void update(Timestamp dateTime, Long userId);
+public interface ActivityRepository extends JpaRepository<Activity, Long> {
+    @Transactional
+    @Modifying
+    @Query("update Activity a set a.lastActivityDateTime = ?1 where a.id = ?2")
+    void update(Timestamp dateTime, Long userId);
 
 }

@@ -12,39 +12,41 @@ import com.springprojects.repository.NotificationRepository;
 @Service
 public class NotificationService {
 
-	@Autowired
-	private NotificationRepository notificationRepository;
+    @Autowired
+    private NotificationRepository notificationRepository;
 
-	public void save(Notification notification) {
-		// TODO Auto-generated method stub
-		notificationRepository.save(notification);
-		deleteIfLimitExceed(notification);
-	}
-	
-	public List<Notification> findNotificationsByUser(UserEntity userEntity){
-		return notificationRepository.findByNotifyTo(userEntity);
-	}
-	public int count(UserEntity userEntity) {
-		return notificationRepository.findByNotifyTo(userEntity).size();
-	}
-	public void deleteIfLimitExceed(Notification notification) {
-		if(count(notification.getNotifyTo())>500) {
-			notificationRepository.deleteLast50ByNotifyTo(notification.getNotifyTo());
-		}
-	}
+    public void save(Notification notification) {
+        // TODO Auto-generated method stub
+        notificationRepository.save(notification);
+        deleteIfLimitExceed(notification);
+    }
 
-	public Notification findById(long id) {
-		// TODO Auto-generated method stub
-		return notificationRepository.findOne(id);
-	}
+    public List<Notification> findNotificationsByUser(UserEntity userEntity) {
+        return notificationRepository.findByNotifyTo(userEntity);
+    }
 
-	public void update(Notification notificaiton) {
-		// TODO Auto-generated method stub
-		notificationRepository.save(notificaiton);
-	}
+    public int count(UserEntity userEntity) {
+        return notificationRepository.findByNotifyTo(userEntity).size();
+    }
 
-	public void delete(Notification notification) {
-		// TODO Auto-generated method stub
-		notificationRepository.delete(notification);
-	}
+    public void deleteIfLimitExceed(Notification notification) {
+        if (count(notification.getNotifyTo()) > 500) {
+            notificationRepository.deleteLast50ByNotifyTo(notification.getNotifyTo());
+        }
+    }
+
+    public Notification findById(long id) {
+        // TODO Auto-generated method stub
+        return notificationRepository.findOne(id);
+    }
+
+    public void update(Notification notificaiton) {
+        // TODO Auto-generated method stub
+        notificationRepository.save(notificaiton);
+    }
+
+    public void delete(Notification notification) {
+        // TODO Auto-generated method stub
+        notificationRepository.delete(notification);
+    }
 }

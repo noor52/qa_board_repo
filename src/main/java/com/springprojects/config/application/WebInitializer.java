@@ -41,7 +41,6 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
     /**
      * Specify the servlet mapping(s) for the {@code DispatcherServlet} &mdash;
      * for example {@code "/"}, {@code "/app"}, etc.
-     *
      */
     protected String[] getServletMappings() {
         return new String[]{"/"};
@@ -70,6 +69,6 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
     protected Filter[] getServletFilters() {
         return new Filter[]{new CORSFilter()};
     }
-    
-    
+
+
 }

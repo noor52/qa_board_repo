@@ -22,15 +22,17 @@
  *   The <td>'s parent (<tr>) will be sorted instead
  *   of the <td> itself.
  */
-jQuery.fn.sortElements = (function(){
+jQuery.fn.sortElements = (function () {
 
     var sort = [].sort;
 
-    return function(comparator, getSortable) {
+    return function (comparator, getSortable) {
 
-        getSortable = getSortable || function(){return this;};
+        getSortable = getSortable || function () {
+            return this;
+        };
 
-        var placements = this.map(function(){
+        var placements = this.map(function () {
 
             var sortElement = getSortable.call(this),
                 parentNode = sortElement.parentNode,
@@ -43,7 +45,7 @@ jQuery.fn.sortElements = (function(){
                     sortElement.nextSibling
                 );
 
-            return function() {
+            return function () {
 
                 if (parentNode === this) {
                     throw new Error(
@@ -60,7 +62,7 @@ jQuery.fn.sortElements = (function(){
 
         });
 
-        return sort.call(this, comparator).each(function(i){
+        return sort.call(this, comparator).each(function (i) {
             placements[i].call(getSortable.call(this));
         });
 

@@ -9,8 +9,8 @@ import com.springprojects.entity.Contribution;
 import com.springprojects.entity.UserEntity;
 
 @Repository
-public interface ContributionRepository extends JpaRepository<Contribution, Long>{
+public interface ContributionRepository extends JpaRepository<Contribution, Long> {
 
-	List<Contribution> findAllByContributor(UserEntity userEntity);
+    List<Contribution> findAllByContributor(UserEntity userEntity);
 
 }

@@ -43,16 +43,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/student/**")
                 .hasRole("STUDENT")
                 .antMatchers(
-                		"/dashboard", 
-                		"/ideas", 
-                		"/ideas/**",
-                		"/download**", 
-                		"/profile**", 
-                		"/footer", 
-                		"/main-header", 
-                		"/post-new-idea", 
-                		"/control-sidebar"
-                		)
+                        "/dashboard",
+                        "/ideas",
+                        "/ideas/**",
+                        "/download**",
+                        "/profile**",
+                        "/footer",
+                        "/main-header",
+                        "/post-new-idea",
+                        "/control-sidebar"
+                )
                 .authenticated()
                 .and()
                 .formLogin()
@@ -101,7 +101,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean(name = "passwordEncoder")
-    PasswordEncoder BCPasswordEncoder(){
+    PasswordEncoder BCPasswordEncoder() {
         return new BCryptPasswordEncoder(11);
     }
 }

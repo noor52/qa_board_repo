@@ -11,40 +11,40 @@ import com.springprojects.repository.DepartmentRepository;
 @Service
 public class DepartmentService {
 
-	@Autowired
-	private DepartmentRepository departmentRepository;
-	
-	public void save(Department department) {
-		departmentRepository.save(department);
-	}
-	
-	public List<Department> getAllDepartments(){
-		return departmentRepository.findAll();
-	}
-	
-	public Department findByDepartmentName(String departmentName) {
-		return departmentRepository.findByDepartmentName(departmentName);
-	}
-	
-	public Department findByDepartmentId(Long departmentId) {
-		return departmentRepository.findOne(departmentId);
-	}
+    @Autowired
+    private DepartmentRepository departmentRepository;
 
-	public String saveOrUpdate(Department department) {
-		// TODO Auto-generated method stub
-		Department department2 = findByDepartmentName(department.getDepartmentName());
-		if(department2 == null) {
-			department2 = findByDepartmentId(department.getDepartmentId());
-			if(department2 == null) {
-				departmentRepository.save(department);
-				return "saved";
-			}else {
-				department2.setDepartmentName(department.getDepartmentName());
-				departmentRepository.save(department2);
-				return "updated";
-			}
-		}else{
-			return "updated";
-		}
-	}
+    public void save(Department department) {
+        departmentRepository.save(department);
+    }
+
+    public List<Department> getAllDepartments() {
+        return departmentRepository.findAll();
+    }
+
+    public Department findByDepartmentName(String departmentName) {
+        return departmentRepository.findByDepartmentName(departmentName);
+    }
+
+    public Department findByDepartmentId(Long departmentId) {
+        return departmentRepository.findOne(departmentId);
+    }
+
+    public String saveOrUpdate(Department department) {
+        // TODO Auto-generated method stub
+        Department department2 = findByDepartmentName(department.getDepartmentName());
+        if (department2 == null) {
+            department2 = findByDepartmentId(department.getDepartmentId());
+            if (department2 == null) {
+                departmentRepository.save(department);
+                return "saved";
+            } else {
+                department2.setDepartmentName(department.getDepartmentName());
+                departmentRepository.save(department2);
+                return "updated";
+            }
+        } else {
+            return "updated";
+        }
+    }
 }

@@ -1,6 +1,6 @@
-$(document).ready(function(){
+$(document).ready(function () {
 
-    $("#submit").click(function(e){
+    $("#submit").click(function (e) {
         var name = $("#name").val();
         var email = $("#email").val();
         var sex = $("input[name='sex']").prop("checked");
@@ -9,8 +9,8 @@ $(document).ready(function(){
 
         function isSubjectChecked() {
             var checked = false;
-            $(".subjects").each(function(index){
-                if($(this).is(':checked')) {
+            $(".subjects").each(function (index) {
+                if ($(this).is(':checked')) {
                     checked = true;
                 }
             });
@@ -21,8 +21,8 @@ $(document).ready(function(){
 
         function isSexChecked() {
             var checked = false;
-            $(".sex").each(function(index){
-                if($(this).is(':checked')) {
+            $(".sex").each(function (index) {
+                if ($(this).is(':checked')) {
                     checked = true;
                 }
             });
@@ -31,44 +31,44 @@ $(document).ready(function(){
         }
 
 
-        if(name===""){
+        if (name === "") {
             $("#msg-name").text("Name field is empty.");
             $("#msg-name").attr("class", "alert-danger");
             e.preventDefault();
-        }else{
+        } else {
             $("#msg-name").text("");
         }
-        if(email===""){
+        if (email === "") {
             $("#msg-email").text("Email field is empty.");
             $("#msg-email").attr("class", "alert-danger");
             e.preventDefault();
-        } else if(validateEmail(email)===false){
+        } else if (validateEmail(email) === false) {
             $("#msg-email").text("Invalid email was found.");
             $("#msg-email").attr("class", "alert-danger");
             e.preventDefault();
-        }else{
+        } else {
             $("#msg-email").text("");
         }
-        if(isSexChecked()===false){
+        if (isSexChecked() === false) {
             $("#msg-sex").text("Sex field is empty.");
             $("#msg-sex").attr("class", "alert-danger");
             e.preventDefault();
-        }else{
+        } else {
             $("#msg-sex").text("");
         }
-        if(isSubjectChecked()===false){
+        if (isSubjectChecked() === false) {
             $("#msg-subject").text("Subject field is empty.");
             $("#msg-subject").attr("class", "alert-danger");
             e.preventDefault();
-        }else{
+        } else {
             $("#msg-subject").text("");
         }
 
-        if(country==="" || typeof country == 'undefined'){
+        if (country === "" || typeof country == 'undefined') {
             $("#msg-country").text("Country field is empty.");
             $("#msg-country").attr("class", "alert-danger");
             e.preventDefault();
-        }else{
+        } else {
             $("#msg-country").text("");
         }
     });

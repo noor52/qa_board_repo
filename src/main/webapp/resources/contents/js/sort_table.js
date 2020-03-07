@@ -1,27 +1,27 @@
-function sortTable(column_ids){
+function sortTable(column_ids) {
     var table = $('table');
 
     $(column_ids)
         .wrapInner('<span title="sort this column"/>')
-        .each(function(){
+        .each(function () {
 
             var th = $(this),
                 thIndex = th.index(),
                 inverse = false;
 
-            th.click(function(){
+            th.click(function () {
 
-                table.find('td').filter(function(){
+                table.find('td').filter(function () {
 
                     return $(this).index() === thIndex;
 
-                }).sortElements(function(a, b){
+                }).sortElements(function (a, b) {
 
                     return $.text([a]) > $.text([b]) ?
                         inverse ? -1 : 1
                         : inverse ? 1 : -1;
 
-                }, function(){
+                }, function () {
 
                     // parentNode is the element we want to move
                     return this.parentNode;
@@ -36,21 +36,20 @@ function sortTable(column_ids){
 
 }
 
-function searchTable(col_num){
-    $("#search").on("keyup", function() {
+function searchTable(col_num) {
+    $("#search").on("keyup", function () {
         var value = $(this).val();
 
-        $("table tr").each(function(index) {
+        $("table tr").each(function (index) {
             if (index !== 0) {
 
                 $row = $(this);
 
-                var id = $row.find("td:nth-child(n+"+col_num+")").text().toLowerCase();
+                var id = $row.find("td:nth-child(n+" + col_num + ")").text().toLowerCase();
 
                 if (id.indexOf(value.toLowerCase()) !== 0) {
                     $row.hide();
-                }
-                else {
+                } else {
                     $row.show();
                 }
             }
@@ -64,8 +63,8 @@ function paginate_table(table_selector) {
         sort: [false, false, false],
         filters: [false, false, false],
         filterText: 'Type to filter... ',
-        onChange: function(old_page, new_page){
+        onChange: function (old_page, new_page) {
             console.log('changed from ' + old_page + ' to ' + new_page);
         }
-    }) ;
+    });
 }

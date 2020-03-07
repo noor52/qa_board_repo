@@ -17,7 +17,7 @@ public class CORSFilter implements Filter {
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Authorization, Origin, Accept, Access-Control-Request-Method, Access-Control-Request-Headers");
         chain.doFilter(req, res);
-        
+
 //        int httpErrorCode = getErrorCode(request);
 //        String errorMsg = "";
 //        switch (httpErrorCode) {
@@ -53,9 +53,11 @@ public class CORSFilter implements Filter {
 //        return (Integer) httpRequest
 //          .getAttribute("javax.servlet.error.status_code");
 //    }
-    
-    public void init(FilterConfig filterConfig) {}
 
-    public void destroy() {}
+    public void init(FilterConfig filterConfig) {
+    }
+
+    public void destroy() {
+    }
 
 }

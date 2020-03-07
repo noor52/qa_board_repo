@@ -13,23 +13,23 @@ import com.springprojects.repository.IssueRepository;
 @Service
 public class IssueService {
 
-	@Autowired
-	private IssueRepository issueRepository;
-	
-	public void save(Issue issue) {
-		issueRepository.save(issue);
-	}
-	
-	public List<Issue> findAllIssues(){
-		return issueRepository.findAll();
-	}
-	
-	public Issue findById(Long issueId) {
-		return issueRepository.findOne(issueId);
-	}
-	
-	public List<Issue> findByIssueSubmittedBy(UserEntity userEntity){
-		return issueRepository.findByIssueSubmittedBy(userEntity);
-	}
+    @Autowired
+    private IssueRepository issueRepository;
+
+    public void save(Issue issue) {
+        issueRepository.save(issue);
+    }
+
+    public List<Issue> findAllIssues() {
+        return issueRepository.findAll();
+    }
+
+    public Issue findById(Long issueId) {
+        return issueRepository.findOne(issueId);
+    }
+
+    public List<Issue> findByIssueSubmittedBy(UserEntity userEntity) {
+        return issueRepository.findByIssueSubmittedBy(userEntity);
+    }
 
 }

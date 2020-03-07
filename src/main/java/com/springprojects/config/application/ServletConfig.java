@@ -32,7 +32,7 @@ public class ServletConfig extends WebMvcConfigurerAdapter {
     @Autowired
     ThymeleafViewResolver viewResolver;
 
-//---------------------------- For Mobile device support------------------------
+    //---------------------------- For Mobile device support------------------------
     @Bean
     public DeviceResolverHandlerInterceptor
     deviceResolverHandlerInterceptor() {
@@ -80,7 +80,7 @@ public class ServletConfig extends WebMvcConfigurerAdapter {
 //    }
 
     @Bean
-    public LiteDeviceDelegatingViewResolver liteDeviceDelegatingViewResolver(){
+    public LiteDeviceDelegatingViewResolver liteDeviceDelegatingViewResolver() {
         LiteDeviceDelegatingViewResolver resolver =
                 new LiteDeviceDelegatingViewResolver(viewResolver);
         resolver.setMobilePrefix("mobile/");
@@ -95,7 +95,7 @@ public class ServletConfig extends WebMvcConfigurerAdapter {
     @Bean
     @Description("Thymeleaf View Resolver")
     public ThymeleafViewResolver viewResolver(ServletContext servletContext) {
-    	
+
         ServletContextTemplateResolver templateResolver = new ServletContextTemplateResolver(servletContext);
         templateResolver.setTemplateMode("LEGACYHTML5");
         templateResolver.setPrefix("/WEB-INF/views/");
@@ -120,7 +120,7 @@ public class ServletConfig extends WebMvcConfigurerAdapter {
         return messageSource;
     }
 
-//-----------------To resolve the problem: Resource interpreted as Stylesheet but transferred with MIME type text/html
+    //-----------------To resolve the problem: Resource interpreted as Stylesheet but transferred with MIME type text/html
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
@@ -130,24 +130,24 @@ public class ServletConfig extends WebMvcConfigurerAdapter {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/").setCachePeriod(999999999);
         registry.addResourceHandler(
-        		"/admin/resources/**",
-        		"/staff/resources/**",
-        		"/student/resources/**",
-        		"/qa_manager/resources/**",
-        		"/qa_coordinator/resources/**",
-        		"/qa_coordinator/ideas/resources/**",
-        		"/ideas/resources/**",
-        		"/resources/**"
-        		).addResourceLocations("/resources/").setCachePeriod(999999999);
+                "/admin/resources/**",
+                "/staff/resources/**",
+                "/student/resources/**",
+                "/qa_manager/resources/**",
+                "/qa_coordinator/resources/**",
+                "/qa_coordinator/ideas/resources/**",
+                "/ideas/resources/**",
+                "/resources/**"
+        ).addResourceLocations("/resources/").setCachePeriod(999999999);
         registry.addResourceHandler(
-        		"/temp/**", 
-        		"/student/temp/**",
-        		"/admin//temp/**", 
-        		"/staff/temp/**", 
-        		"/qa_manager/temp/**", 
-        		"/qa_coordinator/temp/**", 
-        		"/ideas/temp/**"
-        		).addResourceLocations(Properties.TEMP_PATH).setCachePeriod(999999999);
+                "/temp/**",
+                "/student/temp/**",
+                "/admin//temp/**",
+                "/staff/temp/**",
+                "/qa_manager/temp/**",
+                "/qa_coordinator/temp/**",
+                "/ideas/temp/**"
+        ).addResourceLocations(Properties.TEMP_PATH).setCachePeriod(999999999);
     }
 
 }

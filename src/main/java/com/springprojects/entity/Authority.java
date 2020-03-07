@@ -1,6 +1,7 @@
 package com.springprojects.entity;
 
 import javax.persistence.GeneratedValue;
+
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.Column;
@@ -14,11 +15,11 @@ import java.util.Objects;
 @Table(name = "ewsd_tbl_authority")
 public class Authority implements GrantedAuthority, Serializable {
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 2068750034683931763L;
-	@GeneratedValue
-	@Id
+     *
+     */
+    private static final long serialVersionUID = 2068750034683931763L;
+    @GeneratedValue
+    @Id
     @Column(name = "role_uuid", nullable = false)
     private Long id;
     @Column(name = "authority", nullable = false, unique = true)
@@ -37,7 +38,7 @@ public class Authority implements GrantedAuthority, Serializable {
         return authority;
     }
 
-    public void setAuthority(String role){
+    public void setAuthority(String role) {
         this.authority = role;
     }
 

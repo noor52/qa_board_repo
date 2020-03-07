@@ -31,7 +31,7 @@ public class MySqlConfig {
     }
 
     @Bean
-    JdbcTemplate jdbcTemplate(){
+    JdbcTemplate jdbcTemplate() {
         return new JdbcTemplate(dataSource());
     }
 

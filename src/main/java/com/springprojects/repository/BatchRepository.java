@@ -11,7 +11,7 @@ import com.springprojects.entity.Batch;
 @Transactional
 public interface BatchRepository extends JpaRepository<Batch, Long> {
 
-	Batch findByAcademicYear(String academicYear);
-	
-	Batch findByBatchName(String batchName);
+    Batch findByAcademicYear(String academicYear);
+
+    Batch findByBatchName(String batchName);
 }

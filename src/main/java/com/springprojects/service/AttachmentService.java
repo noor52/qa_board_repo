@@ -22,51 +22,51 @@ import com.springprojects.repository.AttachmentRepository;
 @Service
 public class AttachmentService {
 
-	@Autowired
-	private AttachmentRepository attachmentRepository;
+    @Autowired
+    private AttachmentRepository attachmentRepository;
 
-	// Save the uploaded file to this folder
-	private static final String UPLOADED_FOLDER = Properties.TEMP_PATH;
+    // Save the uploaded file to this folder
+    private static final String UPLOADED_FOLDER = Properties.TEMP_PATH;
 
-	private Logger logger = Logger.getLogger(AttachmentService.class.getName());
+    private Logger logger = Logger.getLogger(AttachmentService.class.getName());
 
-	public Attachment save(Attachment attachment, MultipartFile file, Long userId) {
-		try {
-			// Get the file and save it somewhere
-			byte[] bytes = file.getBytes();
+    public Attachment save(Attachment attachment, MultipartFile file, Long userId) {
+        try {
+            // Get the file and save it somewhere
+            byte[] bytes = file.getBytes();
 
-			File dir = Paths.get(Properties.TEMP_PATH + userId + "//").toFile();
-			if (!dir.exists()) {
-				dir.mkdirs();
-			}
-			String extension = "";
-			StringTokenizer tokenizer = new StringTokenizer(file.getOriginalFilename(), ".");
-			while (tokenizer.hasMoreTokens()) {
-				extension = tokenizer.nextToken();
-			}
-			String url = Properties.TEMP_PATH + userId + "//" + attachment.getAttachmentId() + "." + extension;
-			File serverFile = new File(url);
-			BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
-			stream.write(bytes);
-			stream.close();
-			logger.info("File written successfully.");
-			url = "/temp/" + userId + "//" + attachment.getAttachmentId() + "." + extension;
-			attachment.setFileURL(url);
-			attachment.setFileType(Files.probeContentType(Paths.get(url)));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+            File dir = Paths.get(UPLOADED_FOLDER + userId + "/").toFile();
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            String extension = "";
+            StringTokenizer tokenizer = new StringTokenizer(file.getOriginalFilename(), ".");
+            while (tokenizer.hasMoreTokens()) {
+                extension = tokenizer.nextToken();
+            }
+            String url = UPLOADED_FOLDER + userId + "/" + attachment.getAttachmentId() + "." + extension;
+            File serverFile = new File(url);
+            BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
+            stream.write(bytes);
+            stream.close();
+            logger.info("File written successfully.");
+//			url = "/temp/" + userId + "//" + attachment.getAttachmentId() + "." + extension;
+            attachment.setFileURL(url);
+            attachment.setFileType(Files.probeContentType(Paths.get(url)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-		attachmentRepository.save(attachment);
-		return attachment;
-	}
+        attachmentRepository.save(attachment);
+        return attachment;
+    }
 
-	public void save(Attachment attachment) {
-		attachmentRepository.save(attachment);
-	}
+    public void save(Attachment attachment) {
+        attachmentRepository.save(attachment);
+    }
 
-	public Attachment readAttachment(Long id) {
-		return attachmentRepository.findOne(id);
-	}
+    public Attachment readAttachment(Long id) {
+        return attachmentRepository.findOne(id);
+    }
 
 }

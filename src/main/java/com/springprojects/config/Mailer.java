@@ -24,7 +24,7 @@ public class Mailer {
         props.put("mail.smtp.port", Properties.SMTP_PORT);
 
         Session session = Session.getDefaultInstance(props, new Authenticator() {
-		
+
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication("teamg5.bit@gmail.com", "bit12345");
@@ -41,7 +41,7 @@ public class Mailer {
             Transport.send(message);
             System.out.println("Message sent successfully!");
         } catch (AuthenticationFailedException e) {
-        	Logger.getLogger(Mailer.class.getName()).log(Level.SEVERE, e.getMessage());
+            Logger.getLogger(Mailer.class.getName()).log(Level.SEVERE, e.getMessage());
         } catch (MessagingException ex) {
             Logger.getLogger(Mailer.class.getName()).log(Level.SEVERE, null, ex);
         }

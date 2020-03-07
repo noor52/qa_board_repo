@@ -12,6 +12,6 @@ import com.springprojects.entity.UserEntity;
 @Repository
 public interface ReactionRepository extends JpaRepository<Reaction, Long> {
 
-	Reaction findByIdeaAndReactedUser(Idea idea, UserEntity userByUsername);
+    Reaction findByIdeaAndReactedUser(Idea idea, UserEntity userByUsername);
 
 }

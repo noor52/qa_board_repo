@@ -29,54 +29,54 @@ import com.springprojects.service.UserService;
 @RestController
 public class ReactionController {
 
-	@Autowired
-	private ReactionService reactionService;
-	@Autowired
-	private UserService userService;
-	@Autowired
-	private IdeaService ideaService;
-	@Autowired
-	Utils utils;
-	@Autowired
-	private ActivityService activityService;
-	private final Logger logger = Logger.getLogger(getClass().getName());
-	
-	@RequestMapping(value="/{usertype}/ideas/{ideaId}/reactions", method=RequestMethod.GET)
-	public List<Reaction> reactions(
-			HttpSession session,
-			@PathVariable("ideaId") Long ideaId, 
-			@RequestParam("uid") String username, 
-			@RequestParam(name="reactionType", defaultValue="0") Integer reactionType
-			){
-		UserEntity userEntity = (UserEntity) session.getAttribute("usr");
-		Set<Reaction> reactionsSet = new HashSet<>();
-		
-		Idea idea = ideaService.getIdea(ideaId);
-		if(!reactionService.exists(userService.getUserByUsername(username).getId(), ideaId)) {
-			Reaction reaction = new Reaction();
-			reaction.setReactionType(reactionType);
-			reaction.setReactedUser(userService.getUserByUsername(username));
-			reaction.setIdea(ideaService.getIdea(ideaId));
-			reaction.setReactionId(System.currentTimeMillis());
-			reactionService.save(reaction);
-			Activity activity = new Activity();
-			activity.setId(userEntity.getId());
-			activity.setLastActivityDateTime(new Timestamp(System.currentTimeMillis()));
-			activityService.saveOrUpdate(activity);
-			reactionsSet.add(reaction);
-			idea.setReactions(reactionsSet);
-			ideaService.update(idea);
-		}else{
-			Reaction reaction = reactionService.fetch(ideaId, username);
-			reaction.setReactionType(reactionType);
-			reactionService.save(reaction);
-		}
-		
-		List<Reaction> reactions = new ArrayList<>();
-		for(Reaction reaction2 : idea.getReactions()) {
-			reactions.add(reaction2);
-		}
-		logger.info("reactions posted");
-		return reactions;	
-	}
+    @Autowired
+    private ReactionService reactionService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private IdeaService ideaService;
+    @Autowired
+    Utils utils;
+    @Autowired
+    private ActivityService activityService;
+    private final Logger logger = Logger.getLogger(getClass().getName());
+
+    @RequestMapping(value = "/{usertype}/ideas/{ideaId}/reactions", method = RequestMethod.GET)
+    public List<Reaction> reactions(
+            HttpSession session,
+            @PathVariable("ideaId") Long ideaId,
+            @RequestParam("uid") String username,
+            @RequestParam(name = "reactionType", defaultValue = "0") Integer reactionType
+    ) {
+        UserEntity userEntity = (UserEntity) session.getAttribute("usr");
+        Set<Reaction> reactionsSet = new HashSet<>();
+
+        Idea idea = ideaService.getIdea(ideaId);
+        if (!reactionService.exists(userService.getUserByUsername(username).getId(), ideaId)) {
+            Reaction reaction = new Reaction();
+            reaction.setReactionType(reactionType);
+            reaction.setReactedUser(userService.getUserByUsername(username));
+            reaction.setIdea(ideaService.getIdea(ideaId));
+            reaction.setReactionId(System.currentTimeMillis());
+            reactionService.save(reaction);
+            Activity activity = new Activity();
+            activity.setId(userEntity.getId());
+            activity.setLastActivityDateTime(new Timestamp(System.currentTimeMillis()));
+            activityService.saveOrUpdate(activity);
+            reactionsSet.add(reaction);
+            idea.setReactions(reactionsSet);
+            ideaService.update(idea);
+        } else {
+            Reaction reaction = reactionService.fetch(ideaId, username);
+            reaction.setReactionType(reactionType);
+            reactionService.save(reaction);
+        }
+
+        List<Reaction> reactions = new ArrayList<>();
+        for (Reaction reaction2 : idea.getReactions()) {
+            reactions.add(reaction2);
+        }
+        logger.info("reactions posted");
+        return reactions;
+    }
 }

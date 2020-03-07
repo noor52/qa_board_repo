@@ -18,19 +18,20 @@ import java.util.logging.Logger;
 
 public class CustomAuthSuccessHandler implements AuthenticationSuccessHandler {
     private Logger logger = Logger.getLogger(CustomAuthSuccessHandler.class.getName());
+
     @Override
     public void onAuthenticationSuccess(
-    		HttpServletRequest httpServletRequest, 
-    		HttpServletResponse httpServletResponse, 
-    		Authentication authentication
-    		) throws IOException, ServletException {
+            HttpServletRequest httpServletRequest,
+            HttpServletResponse httpServletResponse,
+            Authentication authentication
+    ) throws IOException, ServletException {
         HttpSession session = httpServletRequest.getSession();
         UserEntity authUser = (UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         session.setAttribute("usr", authUser);
         session.setAttribute("id", authUser.getId());
         session.setAttribute("username", authUser.getUsername().split("@")[0]);
         session.setAttribute("authorities", authentication.getAuthorities());
-        System.out.println("Authenticated user = "+authUser.toString());
+        System.out.println("Authenticated user = " + authUser.toString());
 
 
         //set our response to OK status

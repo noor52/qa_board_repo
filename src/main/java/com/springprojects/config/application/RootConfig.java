@@ -11,7 +11,7 @@ import com.springprojects.config.Utils;
 @ComponentScan(basePackages = {"com.springprojects.service", "com.springprojects.config"})
 public class RootConfig {
     @Bean
-    public CommonsMultipartResolver multipartResolver(){
+    public CommonsMultipartResolver multipartResolver() {
         return new CommonsMultipartResolver();
     }
 }

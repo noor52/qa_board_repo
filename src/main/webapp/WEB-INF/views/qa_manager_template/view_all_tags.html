@@ -74,47 +74,49 @@
                                         th:text="${#dates.format(tag.closingDate, 'dd-MM-yyyy hh:mm:ss aaa')}"></td>
                                 <td
                                         th:text="${#dates.format(tag.finalClosingDate, 'dd-MM-yyyy hh:mm:ss aaa')}"></td>
-                                
-                                <td th:id="'total_ideas_'+${tag.tagId}" th:text="${totalIdeas[__${iterationStatus.index}__]}"></td>
+
+                                <td th:id="'total_ideas_'+${tag.tagId}"
+                                    th:text="${totalIdeas[__${iterationStatus.index}__]}"></td>
                                 <td th:id="'td_'+${tag.tagId}">
-                                <a class="btn btn-block btn-default btn-sm" 
-                                href="#" th:if="${totalIdeas[__${iterationStatus.index}__]}==0" th:id="'btn_'+${tag.tagId}"
+                                    <a class="btn btn-block btn-default btn-sm"
+                                       href="#" th:if="${totalIdeas[__${iterationStatus.index}__]}==0"
+                                       th:id="'btn_'+${tag.tagId}"
                                        th:text="${'Delete'}"></a>
-                                       
-                                <script type="text/javascript" th:inline="javascript">
-                                	var tagId = /*[[${tag.tagId}]]*/;
-                                	var btnId = 't_'+tagId;
-                                	setInterval(function(){
-                                		tagId = /*[[${tag.tagId}]]*/;
-                                		$.ajax({
-                                			url: '/qa_manager/tag-status/'+tagId,
-                                			method:'GET',
-                                			data: '',
-                                			success:function(data){
-                                				tagId = /*[[${tag.tagId}]]*/;
-                                				$("#total_ideas_"+tagId).html(data);
-                                				if(data>0){
-                                					$("#td_"+tagId).html("");
-                                					
-                                				}
-                                			}
-                                		});
-                                	}, 1000);
-                                	$("#btn_"+tagId).click(function(btn){
-                                		var tagId = /*[[${tag.tagId}]]*/;
-                                		$.ajax({
-                                			url:'/qa_manager/delete-tag/'+tagId,
-                                			method:'GET',
-                                			data:'',
-                                			success:function(data){
-                                				location.reload();
-                                			},
-                                			failure:function(data){
-                                				location.reload();
-                                			}
-                                		});
-                                	});
-                                </script>       
+
+                                    <script type="text/javascript" th:inline="javascript">
+                                        var tagId = /*[[${tag.tagId}]]*/;
+                                        var btnId = 't_' + tagId;
+                                        setInterval(function () {
+                                            tagId = /*[[${tag.tagId}]]*/;
+                                            $.ajax({
+                                                url: '/qa_manager/tag-status/' + tagId,
+                                                method: 'GET',
+                                                data: '',
+                                                success: function (data) {
+                                                    tagId = /*[[${tag.tagId}]]*/;
+                                                    $("#total_ideas_" + tagId).html(data);
+                                                    if (data > 0) {
+                                                        $("#td_" + tagId).html("");
+
+                                                    }
+                                                }
+                                            });
+                                        }, 1000);
+                                        $("#btn_" + tagId).click(function (btn) {
+                                            var tagId = /*[[${tag.tagId}]]*/;
+                                            $.ajax({
+                                                url: '/qa_manager/delete-tag/' + tagId,
+                                                method: 'GET',
+                                                data: '',
+                                                success: function (data) {
+                                                    location.reload();
+                                                },
+                                                failure: function (data) {
+                                                    location.reload();
+                                                }
+                                            });
+                                        });
+                                    </script>
                                 </td>
                             </tr>
                         </th:block>

@@ -13,9 +13,9 @@ import javax.servlet.ServletContext;
 public class Properties {
 
     public static final String DB_DRIVER_CLASS = "com.mysql.cj.jdbc.Driver";
-    public static final String DB_URL = "jdbc:mysql://localhost:3306/dep3k85tqarnsr?createDatabaseIfNotExist=true&serverTimezone=UTC&useSSL=false";
+    public static final String DB_URL = "jdbc:mysql://localhost:3306/qa_board?createDatabaseIfNotExist=true&serverTimezone=UTC&useSSL=false";
     public static final String DB_USER = "root";
-    public static final String DB_PASSWORD = "password";
+    public static final String DB_PASSWORD = "";
 
     public static final String HIBERNATE_DIALECT = "org.hibernate.dialect.MySQL5Dialect";
     public static final String HIBERNATE_SHOW_SQL = "true";

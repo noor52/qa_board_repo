@@ -27,7 +27,7 @@ public class CustomAuthSuccessHandler implements AuthenticationSuccessHandler {
     ) throws IOException, ServletException {
         HttpSession session = httpServletRequest.getSession();
         UserEntity authUser = (UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        session.setAttribute("usr", authUser);
+        session.setAttribute("usr", authUser); // jamilxt
         session.setAttribute("id", authUser.getId());
         session.setAttribute("username", authUser.getUsername().split("@")[0]);
         session.setAttribute("authorities", authentication.getAuthorities());

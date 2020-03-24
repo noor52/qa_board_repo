@@ -51,7 +51,7 @@ public class AdminController {
     @RequestMapping("/dashboard")
     public String dashboard(Model model, HttpSession session) {
         UserEntity userEntity = (UserEntity) session.getAttribute("usr");
-        model.addAttribute("usr", userEntity);
+        model.addAttribute("usr", userEntity); // jamilxt
         logger.info("Admin Dashboard : ");
         return "redirect:/admin/manage-batch";
     }
